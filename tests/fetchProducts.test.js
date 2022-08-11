@@ -7,9 +7,9 @@ describe('1 - Teste a função fetchProducts', () => {
   test('testa se é uma função', () => {
       expect(typeof fetchProducts).toEqual('function')
   })
-  test('se não recebendo parametros retorna o valor esperado', () => {
+  test('se não recebendo parametros retorna o valor esperado', async () => {
     {
-      expect(fetchProducts()).toThrow(new Error('You must provide an url'))
+      expect(await fetchProducts()).toThrowError( new Error ('You must provide an url$'))
     }
   })  
   test('se o fetch é chamado, e com os parametros certos', async () =>{

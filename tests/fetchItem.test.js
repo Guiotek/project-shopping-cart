@@ -20,7 +20,7 @@ describe('2 - Teste a função fetchItem', () => {
       expect(fetch).toHaveBeenCalledWith(api)
     }
   })
-  test('se não recebendo argumentos retorna um erro', ()=>{
-    expect(fetchItem()).toThrow(new Error('You must provide an url'))
+  test('se não recebendo argumentos retorna um erro', async()=>{
+    expect( await fetchItem()).toThrowError(new Error('You must provide an url'))
   })
 });

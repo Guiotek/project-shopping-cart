@@ -1,3 +1,5 @@
+const { fetchProducts } = require('./helpers/fetchProducts');
+
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -27,7 +29,8 @@ const createProductItemElement = ({ sku, name, image }) => {
 const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').innerText;
 
 const cartItemClickListener = (event) => {
-  // coloque seu código aqui aa
+  // coloque seu código aqui 
+
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
@@ -38,4 +41,6 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   return li;
 };
 
-window.onload = () => { };
+window.onload = () => { 
+fetchProducts('computador');
+};

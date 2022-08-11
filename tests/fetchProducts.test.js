@@ -7,8 +7,7 @@ describe('1 - Teste a função fetchProducts', () => {
   test('testa se é uma função', () => {
       expect(typeof fetchProducts).toEqual('function')
   })
-  test('se recebendo parametros certos retorna o valor esperado', () => {
-      expect(fetchProducts('computador')).toEqual(computadorSearch)
+  test('se não recebendo parametros retorna o valor esperado', () => {
     {
       expect(fetchProducts()).toThrow(new Error('You must provide an url'))
     }

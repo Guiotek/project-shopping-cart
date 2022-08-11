@@ -41,6 +41,4 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
   return li;
 };
 
-window.onload = () => { 
-fetchProducts('computador');
-};
+window.onload = () => {};

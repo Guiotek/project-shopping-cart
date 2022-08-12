@@ -42,7 +42,7 @@ const createCartItemElement = ({ sku, name, salePrice }) => {
 };
 
 window.onload = () => {
-  fetchProducts();
+  console.log(fetchProducts('computador'));
   createCartItemElement();
   getSkuFromProductItem();
   createProductItemElement();

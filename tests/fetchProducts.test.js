@@ -3,16 +3,14 @@ const { fetchProducts } = require('../helpers/fetchProducts');
 const computadorSearch = require('../mocks/search');
 
 describe('1 - Teste a função fetchProducts', () => {
-  // implemente seus testes aqui]
-  test('testa se é uma função', () => {
-      expect(typeof fetchProducts).toEqual('function')
+  // implemente seus testes aqui
+  test('erro', async () => {
+    await expect(fetchProducts()).rejects.toThrow('You must provide an url');
   })
-  test('se não recebendo parametros retorna o valor esperado', async () => {
-    {
-      expect(await fetchProducts()).toThrowError( new Error ('You must provide an url$'))
-    }
-  })  
-  test('se o fetch é chamado, e com os parametros certos', async () =>{
+  test('testa se é uma função', () => {
+        expect(typeof fetchProducts).toBe('function')
+  })
+  test('se o fetch é chamado, e com os parametros certos', async () => {
     const api = 'https://api.mercadolibre.com/sites/MLB/search?q=computador'
     {
       await fetchProducts('computador')

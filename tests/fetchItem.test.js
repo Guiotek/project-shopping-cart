@@ -15,12 +15,9 @@ describe('2 - Teste a função fetchItem', () => {
       expect(fetch).toHaveBeenCalled()
     }
     {
-      await fetchProducts('computador')         
+      await fetchProducts('MLB1615760527')         
 
       expect(fetch).toHaveBeenCalledWith(api)
     }
-  })
-  test('se não recebendo argumentos retorna um erro', async()=>{
-    expect( await fetchItem()).toThrowError(new Error('You must provide an url'))
   })
 });

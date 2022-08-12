@@ -23,4 +23,9 @@ describe('1 - Teste a função fetchProducts', () => {
       expect(fetch).toHaveBeenCalledWith(api)
     }
   })
+  test('se a estrutura de dados é igual a computadorSearch', () => {
+    const dadoA = typeof computadorSearch
+    const dadoB = fetchProducts('computador')
+    expect(typeof dadoB ).toBe(dadoA)
+  })
 });

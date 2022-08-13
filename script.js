@@ -29,7 +29,6 @@ const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').inn
 const cartItemClickListener = (event) => {
   // coloque seu código aqui 
   console.log(event.target);
-
 };
 
 const createCartItemElement = ({ sku, name, salePrice }) => {
@@ -50,25 +49,26 @@ const getItems = async () => {
   });
 };
 
-const click = async () => {
-  const btn = await document.querySelectorAll('.item__add');
-  btn.forEach((element) => {
-    element.addEventListener('click', (event) => {
-      getSkuFromProductItem(event.target);
-  });
-  });
-};
-
-const getCartItem = async () => {
-  await click();
-  const item = await fetchItem('MLB1615760527');
+const getCartItem = async (a) => {
+  const item = await fetchItem(a);
   const { id: sku, title: name, price: salePrice } = item;
   const append = document.querySelector('.cart__items');
   const product = createCartItemElement({ sku, name, salePrice });
   append.appendChild(product);
 };
 
+const click = async () => {
+  const btn = await document.querySelectorAll('.item__add');
+  btn.forEach((element) => {
+    element.addEventListener('click', async (event) => {
+    const a = event.target.parentNode;
+    const b = getSkuFromProductItem(a);
+    return getCartItem(b);
+  });
+  });
+};
+
 window.onload = async () => {
   await getItems();
-  await getCartItem();
+  await click();
 };

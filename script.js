@@ -1,5 +1,3 @@
-const saveCartItems = require("./helpers/saveCartItems");
-
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -58,7 +56,6 @@ const getCartItem = async (a) => {
   const append = document.querySelector('.cart__items');
   const product = createCartItemElement({ sku, name, salePrice });
   append.appendChild(product);
-  saveCartItems(product);
 };
 
 const click = async () => {

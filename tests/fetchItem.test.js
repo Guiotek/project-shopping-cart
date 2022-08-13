@@ -15,7 +15,7 @@ describe('2 - Teste a função fetchItem', () => {
       expect(fetch).toHaveBeenCalled()
     }
     {
-      await fetchProducts('MLB1615760527')         
+      await fetchItem('MLB1615760527')         
 
       expect(fetch).toHaveBeenCalledWith(api)
     }

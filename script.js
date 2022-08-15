@@ -56,20 +56,33 @@ const getCartItem = async (a) => {
   const append = document.querySelector('.cart__items');
   const product = createCartItemElement({ sku, name, salePrice });
   append.appendChild(product);
+  saveCartItems(product);
 };
 
 const click = async () => {
   const btn = await document.querySelectorAll('.item__add');
   btn.forEach((element) => {
     element.addEventListener('click', async (event) => {
-    const a = event.target.parentNode;
-    const b = getSkuFromProductItem(a);
-    return getCartItem(b);
+    const a = await event.target.parentNode;
+    const b = await getSkuFromProductItem(a);
+    await getCartItem(b);
   });
   });
+};
+
+const cleanCart = async () => {
+const btn = await document.querySelector('.empty-cart');
+btn.addEventListener('click', async () => {
+  const element = document.querySelectorAll('.cart__item');
+  element.forEach((e) => {
+    e.remove();
+  });
+});
 };
 
 window.onload = async () => {
   await getItems('computador');
   await click();
+  await cleanCart();
+  getSavedCartItems();
 };

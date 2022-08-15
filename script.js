@@ -32,8 +32,8 @@ const getSkuFromProductItem = (item) => item.querySelector('span.item__sku').inn
 
 const cartItemClickListener = (event) => {
   // coloque seu código aqui 
-  const a = event.target;
-  localStorage.removeItem('cartItems');
+  const a = event.target; 
+  console.log(a);
   return a.parentNode.removeChild(a);
 };
 
@@ -63,18 +63,6 @@ const getCartItem = async (a) => {
   append.appendChild(product);
 };
 
-const click = async () => {
-  const btn = await document.querySelectorAll('.item__add');
-  btn.forEach((element) => {
-    element.addEventListener('click', async (event) => {
-    const a = await event.target.parentNode;
-    const b = await getSkuFromProductItem(a);
-    await getCartItem(b);
-    saveCartItems(b);
-  });
-  });
-};
-
 const cleanCart = async () => {
 const btn = await document.querySelector('.empty-cart');
 btn.addEventListener('click', async () => {
@@ -94,9 +82,40 @@ const storage = async () => {
   await getCartItem(await a);
 };
 
+const count = () => {
+  const element = document.querySelectorAll('.cart__item');
+  const array = [];
+  const p = document.querySelector('.total-price');
+  element.forEach((e) => {
+    const str = e.innerText.split(' ').pop();
+    const numbers = str.replace('$', '');
+    const num = Number(numbers);
+    array.push(num);
+  });
+  let total = 0; 
+  total = array.reduce((t, n) => t + n, 0);
+  p.innerHTML = total;
+  return array;
+};
+
+const click = async () => {
+  const btn = await document.querySelectorAll('.item__add');
+  btn.forEach((element) => {
+    element.addEventListener('click', async (event) => {
+    const a = await event.target.parentNode;
+    console.log(a);
+    const b = await getSkuFromProductItem(a);
+    await getCartItem(b);
+    await saveCartItems(b);
+    count();
+  });
+  });
+};
+
 window.onload = async () => {
   await getItems('computador');
   await click();
   await cleanCart();
   await storage();
+  await count();
 };

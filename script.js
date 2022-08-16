@@ -1,7 +1,3 @@
-const retur = {
-  error: 'resource not found',
-};
-
 const array = [];
 
 const createProductImageElement = (imageSource) => {

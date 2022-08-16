@@ -2,6 +2,8 @@ const retur = {
   error: 'resource not found',
 };
 
+const array = [];
+
 const createProductImageElement = (imageSource) => {
   const img = document.createElement('img');
   img.className = 'item__image';
@@ -75,28 +77,28 @@ btn.addEventListener('click', async () => {
 };
 
 const storage = async () => {
-  const a = await getSavedCartItems();
-  if (a.error === retur.error) {
-    return;
-  }
-  await getCartItem(await a);
-};
-
-const count = () => {
-  const element = document.querySelectorAll('.cart__item');
-  const array = [];
-  const p = document.querySelector('.total-price');
-  element.forEach((e) => {
-    const str = e.innerText.split(' ').pop();
-    const numbers = str.replace('$', '');
-    const num = Number(numbers);
-    array.push(num);
+  const a = await getSavedCartItems('cartItems');
+  const b = await JSON.parse(a);
+  b.forEach(async (e) => {
+  getCartItem(await e);  
   });
-  let total = 0; 
-  total = array.reduce((t, n) => t + n, 0);
-  p.innerHTML = total;
-  return array;
-};
+  };
+
+// const count = () => {
+//   const element = document.querySelectorAll('.cart__item');
+//   const array = [];
+//   const p = document.querySelector('.total-price');
+//   element.forEach((e) => {
+//     const str = e.innerText.split(' ').pop();
+//     const numbers = str.replace('$', '');
+//     const num = Number(numbers);
+//     array.push(num);
+//   });
+//   let total = 0; 
+//   total = array.reduce((t, n) => t + n, 0);
+//   p.innerHTML = total;
+//   return array;
+// 
 
 const click = async () => {
   const btn = await document.querySelectorAll('.item__add');
@@ -106,8 +108,7 @@ const click = async () => {
     console.log(a);
     const b = await getSkuFromProductItem(a);
     await getCartItem(b);
-    await saveCartItems(b);
-    count();
+    await saveCartItems(b, array);
   });
   });
 };
@@ -117,5 +118,5 @@ window.onload = async () => {
   await click();
   await cleanCart();
   await storage();
-  await count();
+  // await count();
 };

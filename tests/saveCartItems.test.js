@@ -18,4 +18,18 @@ describe('3 - Teste a função saveCartItems', () => {
       expect(localStorage.setItem).toHaveBeenCalledWith('cartItems', a)
     }
   });
+  test('se o metodo foi chamado', async () =>{
+    const a = '<ol><li>Item</li></ol>'
+    const b = []
+    {
+      await saveCartItems(a, b)
+
+      expect(localStorage.setItem).toHaveBeenCalled()
+    }
+    {
+      await saveCartItems(a, b)
+
+      expect(localStorage.setItem).toHaveBeenCalledWith('cartItems', a)
+    }
+  });
 });
